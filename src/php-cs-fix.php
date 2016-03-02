@@ -1,6 +1,11 @@
 #!/usr/bin/env php
 <?php
 
+namespace Padosoft\Hooks;
+
+use Dotenv\Dotenv;
+
+/*
 $included = include file_exists(__DIR__ . '/../vendor/autoload.php')
     ? __DIR__ . '/../vendor/autoload.php'
     : __DIR__ . '/../../../autoload.php';
@@ -11,7 +16,7 @@ if ( ! $included) {
         . 'php composer.phar install' . PHP_EOL;
 
     exit(1);
-}
+}*/
 
 
 
@@ -32,7 +37,7 @@ if ( ! $included) {
  * collect all files which have been added, copied or
  * modified and store them in an array called output
  */
-$dotenv = new Dotenv\Dotenv(__DIR__, '.pre-commit.env');
+$dotenv = new Dotenv(__DIR__, '.pre-commit.env');
 $dotenv->load();
 
 $psr0 = false;
