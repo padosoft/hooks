@@ -1,0 +1,33 @@
+{
+    "name": "padosoft/hooks",
+    "description": "Padosoft git hooks",
+    "keywords" : ["hooks", "code quality", "pre-commit", "hooks", "git"
+    ],
+    "homepage":"https://github.org/padosoft/hooks/",
+    "license" : "MIT",
+    "authors" : [
+    	{
+    		"name" : "padosoft",
+    		"email" : "helpdesk@padosoft.com",
+    		"homepage" : "https://www.padosoft.com",
+    		"role" : "Developer"
+    	}
+    ],
+	"require": {
+        "fabpot/php-cs-fixer": "^1.11",
+        "vlucas/phpdotenv": "~2.2"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Padosoft\\Hooks\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+        }
+    },
+    "extra": {
+    }
+}
