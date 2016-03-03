@@ -37,7 +37,11 @@ if ( ! $included) {
  * collect all files which have been added, copied or
  * modified and store them in an array called output
  */
-$dotenv = new Dotenv(__DIR__, '.pre-commit.env');
+
+$direnv = file_exists('../../../../hooks/.pre-commit.env')
+    ? '../../../../hooks'
+    : __DIR__;
+$dotenv = new Dotenv($direnv, '.pre-commit.env');
 $dotenv->load();
 
 $psr0 = false;
