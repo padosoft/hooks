@@ -5,7 +5,7 @@ namespace Padosoft\Hooks;
 
 use Dotenv\Dotenv;
 
-/*
+
 $included = include file_exists(__DIR__ . '/../vendor/autoload.php')
     ? __DIR__ . '/../vendor/autoload.php'
     : __DIR__ . '/../../../autoload.php';
@@ -16,7 +16,7 @@ if ( ! $included) {
         . 'php composer.phar install' . PHP_EOL;
 
     exit(1);
-}*/
+}
 
 
 

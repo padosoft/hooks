@@ -1,0 +1,3 @@
+#!/usr/bin/php
+
+"php ..\..\vendor\padosoft\hooks\src\php-cs-fix.php"
