@@ -15,7 +15,7 @@
     ],
 	"require": {
         "fabpot/php-cs-fixer": "^1.11",
-        "vlucas/phpdotenv": "~2.2"
+        "padosoft/static-review": "dev-master"
     },
     "require-dev": {
     },

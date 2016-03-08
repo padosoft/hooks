@@ -3,9 +3,6 @@
 
 namespace Padosoft\Hooks;
 
-use Dotenv\Dotenv;
-
-
 $included = include file_exists(__DIR__ . '/../vendor/autoload.php')
     ? __DIR__ . '/../vendor/autoload.php'
     : __DIR__ . '/../../../autoload.php';
@@ -38,38 +35,6 @@ if ( ! $included) {
  * modified and store them in an array called output
  */
 
-$direnv = file_exists('../../../../hooks/.pre-commit.env')
-    ? '../../../../hooks'
-    : __DIR__;
-$dotenv = new Dotenv($direnv, '.pre-commit.env');
-$dotenv->load();
-
-$psr0 = false;
-if (getenv('PSR0') == 'true') {
-    $psr0 = true;
-}
-$psr1 = false;
-if (getenv('PSR1') == 'true') {
-    $psr1 = true;
-}
-$psr2 = false;
-if (getenv('PSR2') == 'true') {
-    $psr2 = true;
-}
-$symfony = false;
-if (getenv('SYMFONY') == 'true') {
-    $symfony = true;
-}
-$symfonyfixers = '';
-if (getenv('SYMFONY-FIXERS')) {
-    $symfonyfixers = '--fixers=' . getenv('SYMFONY-FIXERS');
-}
-$contribfixers = '';
-if (getenv('CONTRIB-FIXERS')) {
-    $contribfixers = '--fixers=' . getenv('CONTRIB-FIXERS');
-}
-$phpcsfixerpath = getenv('PHP-CS-FIXER-PATH');
-$phppath        = getenv('PHP-PATH');
 
 exec('git diff --cached --name-status --diff-filter=ACMRT', $output);
 foreach ($output as $file) {
@@ -86,28 +51,16 @@ foreach ($output as $file) {
         $fileName    = $dirfilename . '/' . $fileName;
 
         $lint_output = array();
-        exec($phppath . 'php -l ' . escapeshellarg($fileName), $lint_output, $return);
+        exec('php -l ' . escapeshellarg($fileName), $lint_output, $return);
         if ($return == 0) {
 
             /*
              * PHP-CS-Fixer && add it back
              */
 
-            if ($psr0) {
-                exec('php ' . $phpcsfixerpath . "php-cs-fixer fix {$fileName} --level=psr0");
-            }
-            if ($psr1) {
-                exec('php ' . $phpcsfixerpath . "php-cs-fixer fix {$fileName} --level=psr1");
-            }
-            if ($psr2) {
-                exec('php ' . $phpcsfixerpath . "php-cs-fixer fix {$fileName} --level=psr2");
-            }
-            if ($symfony) {
-                exec('php ' . $phpcsfixerpath . "php-cs-fixer fix {$fileName} --level=symfony " . $symfonyfixers);
-            }
-            if ($contribfixers) {
-                exec('php ' . $phpcsfixerpath . "php-cs-fixer fix {$fileName} " . $contribfixers);
-            }
+                $lint_output2 = array();
+                exec("php {$dirfilename}/vendor/fabpot/php-cs-fixer/php-cs-fixer fix {$fileName} ", $lint_output2, $return2);
+
             exec("git add {$fileName}");
         } else {
             echo implode("\n", $lint_output), "\n";
