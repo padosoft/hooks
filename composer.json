@@ -15,7 +15,7 @@
     ],
 	"require": {
         "fabpot/php-cs-fixer": "^1.11",
-        "padosoft/static-review": "dev-master"
+        "padosoft/static-review": "^1.1.0"
     },
     "require-dev": {
     },
