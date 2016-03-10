@@ -16,7 +16,7 @@ class HooksServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = true;
+     protected $defer = true;
 
     /**
      * Bootstrap the application events.
@@ -34,7 +34,7 @@ class HooksServiceProvider extends ServiceProvider
         ]);
 
         $this->publishes([
-            __DIR__ . '/vendor/padosoft/static-review/config/pre-commit.php' => base_path('hooks/pre-commit.php'),
+            __DIR__ . '/../../static-review/config/pre-commit.php' => base_path('hooks/pre-commit.php'),
         ]);
     }
 

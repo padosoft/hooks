@@ -1,4 +1,0 @@
-#!/bin/sh
-
-php.exe "hooks/pre-commit.php"
-php.exe "vendor/padosoft/hooks/src/php-cs-fix.php"
