@@ -34,7 +34,32 @@ This package can be installed through Composer.
 composer require padosoft/hooks
 ```
 
+If you install in a laravel project add in config->app.php the following value in service providers array:
+
+Padosoft\Hooks\HooksServiceProvider::class,
+
+then use php artisan vendor:publish
+
+In a non-laravel project you must copy the .php_cs file from vendor/padosoft/hooks/src/config to the root of project,
+and the pre-commit file from vendor/padosoft/hooks/src/config to .git/hooks folder.
+If you want customize the static-review operation create hooks folder in the root of project then copy pre-commit.php
+file from vendor/padosoft/static-review/src/config/pre-commit.php.
+
+Be careful in a linux or mac environment change
+
+php.exe "vendor/padosoft/hooks/src/php-cs-fix.php"
+php.exe "vendor/padosoft/hooks/src/static-review-pre-commit.php"
+
+in the .git/hooks/pre-commit file to
+
+php "vendor/padosoft/hooks/src/php-cs-fix.php"
+php "vendor/padosoft/hooks/src/static-review-pre-commit.php"
+
 # Usage
+
+Pre-commit git hook is invoked by git commit. Exiting with non-zero status from this script causes the git commit to abort.
+Can be bypassed with --no-verify option.
+
 
 ## Example
 
