@@ -26,11 +26,11 @@ class HooksServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/config/.php_cs' => base_path('.php_cs'),
+            __DIR__ . '/src/config/.php_cs' => base_path('.php_cs'),
         ]);
 
         $this->publishes([
-            __DIR__ . '/config/pre-commit' => base_path('.git/hooks/pre-commit'),
+            __DIR__ . '/src/config/pre-commit' => base_path('.git/hooks/pre-commit'),
         ]);
 
         $this->publishes([
